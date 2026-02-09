@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami - Profil</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* CSS: Mengatur Tampilan */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        /* Foto Profil Bulat */
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #007bff;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 24px;
+        }
+
+        p.subtitle {
+            color: #777;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        /* Ikon Sosial Media */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: #444;
+            font-size: 22px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
+            transform: translateY(-3px);
+        }
+
+        /* Form Styling */
+        .contact-form {
+            text-align: left;
+            border-top: 1px solid #eee;
+            padding-top: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: #007bff;
+        }
+
+        .btn-send {
+            width: 100%;
+            padding: 14px;
+            background-color: #25d366; /* Warna Hijau WA */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-send:hover {
+            background-color: #128c7e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <img src="WK.png" alt="Profile Picture" class="profile-img">
+    
+    <h2>Hubungi Kami</h2>
+    <p class="subtitle">Silakan hubungi kami melalui media sosial atau kirim pesan langsung di bawah ini.</p>
+    
+    <div class="social-links">
+        <a href="tel:+62895603662904" title="Telepon"><i class="fas fa-phone"></i></a>
+        <a href="https://www.instagram.com/clariidae1/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/rasyidsky" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:rasyidgusmiarno28091999@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <div class="contact-form">
+        <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="senderName" placeholder="Masukkan nama Anda..." required>
+        </div>
+        
+        <div class="form-group">
+            <label>Pesan</label>
+            <textarea id="senderMessage" rows="4" placeholder="Apa yang ingin Anda sampaikan?" required></textarea>
+        </div>
+
+        <button class="btn-send" onclick="sendWhatsApp()">
+            <i class="fab fa-whatsapp"></i> Kirim ke WhatsApp
+        </button>
+    </div>
+</div>
+
+<script>
+    function sendWhatsApp() {
+        const name = document.getElementById('senderName').value;
+        const message = document.getElementById('senderMessage').value;
+        
+        // GANTI NOMOR DI BAWAH INI (Gunakan kode negara, contoh: 62812...)
+        const myPhoneNumber = "62895603662904"; 
+
+        if (name === "" || message === "") {
+            alert("Harap isi nama dan pesan terlebih dahulu!");
+            return;
+        }
+
+        const text = `Halo Admin, saya *${name}*%0A%0A*Pesan:*%0A${message}`;
+        const waUrl = `https://wa.me/${myPhoneNumber}?text=${text}`;
+
+        window.open(waUrl, '_blank');
+    }
+</script>
+
+</body>
+</html>

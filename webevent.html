@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Spesial 2026 | Glassmorphism Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        :root {
+            --primary: #818cf8;
+            --primary-dark: #4f46e5;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+            --text-dim: #cbd5e1;
+        }
+
+        body {
+            /* Gradien Hitam - Abu-abu - Putih */
+            background: linear-gradient(135deg, #000000 0%, #1e293b 40%, #475569 80%, #94a3b8 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Glassmorphism */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Efek Kotak Bening (Glass Card) */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px) saturate(160%);
+            -webkit-backdrop-filter: blur(12px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Countdown */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 700px;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-dim);
+        }
+
+        /* Event Info Grid */
+        .event-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            padding: 2.5rem;
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Registration Form */
+        .registration-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 0.8rem;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 0 20px rgba(129, 140, 248, 0.4);
+            transform: scale(1.02);
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            height: 600px;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 2rem;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; } /* Sembunyikan nav di mobile untuk simpelnya */
+            .countdown { padding: 1.5rem; gap: 0.8rem; }
+            .countdown-number { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <span>EventSpesial</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#info">Informasi</a></li>
+                    <li><a href="#register">Registrasi</a></li>
+                    <li><a href="#gallery">Galeri</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Event Spesial 2026</h1>
+            <p>Rasakan pengalaman futuristik dalam perhelatan terbesar tahun ini dengan teknologi dan komunitas global.</p>
+            
+            <div id="countdown-timer" class="glass-card countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Hari</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Jam</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Menit</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Detik</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info">
+        <div class="container">
+            <div class="section-title">
+                <h2>Informasi Acara</h2>
+                <p>Detail waktu, lokasi, dan investasi tiket</p>
+            </div>
+            <div class="event-info">
+                <div class="glass-card info-card">
+                    <i class="fas fa-calendar-day"></i>
+                    <h3>Waktu</h3>
+                    <p>15 - 17 Mei 2026<br>09.00 - 21.00 WIB</p>
+                </div>
+                <div class="glass-card info-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Lokasi</h3>
+                    <p>Jakarta Convention Center<br>DKI Jakarta</p>
+                </div>
+                <div class="glass-card info-card">
+                    <i class="fas fa-ticket-alt"></i>
+                    <h3>Tiket</h3>
+                    <p>Mulai dari<br>Rp 250.000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register">
+        <div class="container">
+            <div class="section-title">
+                <h2>Registrasi</h2>
+                <p>Amankan slot Anda sekarang juga</p>
+            </div>
+            <div class="glass-card registration-form">
+                <form id="regForm">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Contoh: Budi Santoso" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="budi@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Tiket</label>
+                        <select required>
+                            <option value="">Pilih Tiket</option>
+                            <option>Early Bird - Rp 250rb</option>
+                            <option>Reguler - Rp 350rb</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Daftar Sekarang</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galeri</h2>
+                <p>Cuplikan kemeriahan tahun sebelumnya</p>
+            </div>
+            <div class="gallery">
+                <div class="glass-card gallery-item"><img src="download (1).jpg" alt="G1"></div>
+                <div class="glass-card gallery-item"><img src="download (2).jpg" alt="G2"></div>
+                <div class="glass-card gallery-item"><img src="konser slank.jpg" alt="G3"></div>
+                <div class="glass-card gallery-item"><img src="berkonser.jpg" alt="G4"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EventSpesial</h3>
+                    <p>Membangun masa depan melalui kolaborasi dan inovasi tanpa batas.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p><i class="fas fa-envelope"></i> hello@eventspesial.com</p>
+                    <p><i class="fas fa-phone"></i> +62 812 3456 789</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigasi</h3>
+                    <a href="#home">Beranda</a>
+                    <a href="#info">Info</a>
+                    <a href="#register">Daftar</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 EventSpesial. Crafted for the future.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Logic
+        function updateTimer() {
+            const eventDate = new Date('May 15, 2026 09:00:00').getTime();
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            if (diff > 0) {
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = d.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            }
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Form Alert
+        document.getElementById('regForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih! Data pendaftaran Anda telah kami terima.');
+            e.target.reset();
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                window.scrollTo({
+                    top: target.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

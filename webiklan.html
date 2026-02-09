@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezat | Restoran Tradisional</title>
+    <style>
+        /* CSS Variables untuk konsistensi warna */
+        :root {
+            --primary-color: #d62828;
+            --secondary-color: #f77f00;
+            --accent-color: #2a9d8f;
+            --background-light: #f8f4e9;
+            --background-dark: #1d3557;
+            --text-dark: #333333;
+            --text-light: #f8f4e9;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        
+        /* Reset dan pengaturan dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            overflow-x: hidden;
+        }
+        
+        /* Header dan Navigasi */
+        header {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2.2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding: 8px 12px;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+        
+        nav a:hover::after {
+            width: 70%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/d62828/white?text=Makanan+Lezat') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .hero h1 span {
+            color: var(--secondary-color);
+            display: block;
+            font-size: 3.8rem;
+            margin-top: 10px;
+        }
+        
+        .hero p {
+            font-size: 1.8rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(247, 127, 3, 0.4);
+            transition: var(--transition);
+            border: 2px solid var(--secondary-color);
+            animation: fadeInUp 1s ease-out 0.4s both;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(247, 127, 3, 0.5);
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+            margin-left: 15px;
+        }
+        
+        .cta-button.secondary:hover {
+            background: white;
+            color: var(--background-dark);
+        }
+        
+        /* Menu Section */
+        .menu-section {
+            padding: 100px 5%;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.4rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 30px;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .menu-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .menu-content {
+            padding: 25px;
+        }
+        
+        .menu-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--background-dark);
+        }
+        
+        .menu-desc {
+            color: #666;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        .menu-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-top: 8px;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 100px 5%;
+            background: linear-gradient(to right, var(--background-dark), #2a4365);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 70px;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-title {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+        }
+        
+        .about-desc {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 450px;
+            background: url('restoran.jpg') center/cover no-repeat;
+            min-width: 300px;
+        }
+        
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 100px 5%;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .testimonials {
+            max-width: 800px;
+            margin: 50px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background: var(--background-light);
+            padding: 35px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            font-size: 6rem;
+            color: rgba(214, 40, 40, 0.15);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--background-dark);
+            color: var(--text-light);
+            padding: 60px 5% 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .contact-info {
+            margin-top: 15px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info i {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+            color: #aaa;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.8rem;
+            }
+            
+            .hero h1 span {
+                font-size: 3.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.6rem;
+            }
+            
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .about-img {
+                width: 100%;
+                height: 400px;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem 5%;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .hero {
+                padding: 0 15px;
+                height: auto;
+                min-height: 100vh;
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero h1 span {
+                font-size: 2.6rem;
+            }
+            
+            .hero p {
+                font-size: 1.4rem;
+            }
+            
+            .cta-button {
+                display: block;
+                width: 100%;
+                max-width: 350px;
+                margin: 15px auto;
+                padding: 14px;
+            }
+            
+            .cta-button.secondary {
+                margin-left: 0;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .section-title {
+                font-size: 2.6rem;
+            }
+            
+            .about-title {
+                font-size: 2.6rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h1 span {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            nav ul {
+                gap: 5px;
+            }
+            
+            nav a {
+                font-size: 0.95rem;
+                padding: 6px 10px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .menu-title {
+                font-size: 1.6rem;
+            }
+            
+            .menu-price {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header dengan Navigasi -->
+    <header>
+        <div class="logo">
+            <span class="logo-icon">🍜</span>
+            Le<span>zat</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero" class="active">Beranda</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#testimonials">Testimoni</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <h1>Hidangan <span>Tradisional</span> dengan Cita Rasa Modern</h1>
+        <p>Nikmati kelezatan masakan autentik yang diolah dengan bahan-bahan segar pilihan dan resep turun-temurun</p>
+        <a href="#menu" class="cta-button">Lihat Menu</a>
+        <a href="#about" class="cta-button secondary">Tentang Kami</a>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <h2 class="section-title">Menu Favorit</h2>
+        <p class="section-subtitle">Hidangan istimewa kami yang dibuat dengan bahan-bahan segar dan bumbu pilihan</p>
+        
+        <div class="menu-grid">
+            <!-- Menu Item 1 -->
+            <div class="menu-item">
+                <img src="nasigorengspesial.jpg" alt="Nasi Goreng Spesial" class="menu-img">
+                <div class="menu-content">
+                    <h3 class="menu-title">Nasi Goreng Spesial</h3>
+                    <p class="menu-desc">Nasi goreng dengan telur, ayam suwir, dan sayuran segar disajikan dengan kerupuk udang dan acar.</p>
+                    <span class="menu-price">Rp 28.000</span>
+                </div>
+            </div>
+            
+            <!-- Menu Item 2 -->
+            <div class="menu-item">
+                <img src="sateayammadura.jpg" alt="Sate Ayam" class="menu-img">
+                <div class="menu-content">
+                    <h3 class="menu-title">Sate Ayam Madura</h3>
+                    <p class="menu-desc">Sate ayam dengan bumbu kacang spesial, disajikan dengan lontong dan sambal kecap yang menggugah selera.</p>
+                    <span class="menu-price">Rp 32.000</span>
+                </div>
+            </div>
+            
+            <!-- Menu Item 3 -->
+            <div class="menu-item">
+                <img src="baksourat.jpg" alt="Bakso Urat" class="menu-img">
+                <div class="menu-content">
+                    <h3 class="menu-title">Bakso Urat Special</h3>
+                    <p class="menu-desc">Bakso urat dengan kuah kaldu sapi gurih, mie kuning, bihun, dan pangsit goreng yang renyah.</p>
+                    <span class="menu-price">Rp 25.000</span>
+                </div>
+            </div>
+            
+            <!-- Menu Item 4 -->
+            <div class="menu-item">
+                <img src="gadogado.jpg" alt="Gado-Gado" class="menu-img">
+                <div class="menu-content">
+                    <h3 class="menu-title">Gado-Gado Betawi</h3>
+                    <p class="menu-desc">Sayuran segar dengan bumbu kacang yang kental, dilengkapi telur rebus, kentang, dan kerupuk bawang.</p>
+                    <span class="menu-price">Rp 22.000</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2 class="about-title">Tentang Restoran Lezat</h2>
+            <p class="about-desc">Berdiri sejak 2010, Restoran Lezat telah menjadi destinasi kuliner favorit bagi pecinta masakan tradisional Indonesia. Kami berkomitmen menyajikan hidangan autentik dengan bahan-bahan segar pilihan yang dipasok langsung dari petani lokal setiap harinya.</p>
+            <p class="about-desc">Dengan resep turun-temurun yang dijaga keasliannya dan sentuhan inovasi modern, kami memastikan setiap hidangan tidak hanya lezat di lidah tetapi juga sehat dan bergizi. Tim koki berpengalaman kami memasak dengan penuh cinta dan perhatian terhadap detail.</p>
+            <p class="about-desc">Kenyamanan pelanggan adalah prioritas kami. Restoran kami didesain dengan suasana yang hangat dan nyaman, cocok untuk makan bersama keluarga, kencan, atau pertemuan bisnis.</p>
+        </div>
+        <div  class="about-img">
+            <img src="restoran.jpg" alt="" srcset="">
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section" id="testimonials">
+        <h2 class="section-title">Testimoni Pelanggan</h2>
+        <p class="section-subtitle">Apa kata pelanggan kami tentang pengalaman kuliner di Restoran Lezat</p>
+        
+        <div class="testimonials">
+            <div class="testimonial">
+                <p class="testimonial-text">"Makanan di sini luar biasa! Saya sudah mencoba hampir semua menu dan tidak pernah kecewa. Nasi Goreng Spesialnya benar-benar juara!"</p>
+                <p class="testimonial-author">- Budi Santoso, Pelanggan Setia</p>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Suasana restorannya sangat nyaman untuk kumpul keluarga. Anak-anak saya suka sekali dengan Bakso Urat Special-nya. Pelayanannya juga ramah dan cepat."</p>
+                <p class="testimonial-author">- Siti Rahayu, Ibu Rumah Tangga</p>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Sebagai pecinta kuliner, saya mengapresiasi keaslian rasa masakan di sini. Gado-Gado Betawinya benar-benar otentik dengan bumbu kacang yang pas. Highly recommended!"</p>
+                <p class="testimonial-author">- Ahmad Fauzi, Food Blogger</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Restoran Lezat</h3>
+                <p style="margin-top: 15px; line-height: 1.7;">Menyajikan hidangan tradisional Indonesia dengan cita rasa autentik dan bahan-bahan segar pilihan sejak 2010.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Lokasi & Jam Operasional</h3>
+                <div class="contact-info">
+                    <p>📍 Jl. Kuliner No. 45, Jakarta Selatan</p>
+                    <p>⏰ Senin - Jumat: 10.00 - 22.00</p>
+                    <p>⏰ Sabtu - Minggu: 09.00 - 23.00</p>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Kontak Kami</h3>
+                <div class="contact-info">
+                    <p>📱 (021) 555-1234</p>
+                    <p>📧 info@restoranlezat.com</p>
+                    <p>🌐 www.restoranlezat.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Ikuti Kami</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2026 Restoran Lezat. All Rights Reserved. | Website promosi makanan sederhana dengan HTML & CSS</p>
+        </div>
+    </footer>
+</body>
+</html>
+
